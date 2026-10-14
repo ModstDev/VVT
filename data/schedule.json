@@ -1,0 +1,42 @@
+{
+  "trips": [
+    {
+      "id": "trip-001",
+      "route_number": "1",
+      "direction": "Stotis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "08:00"
+        },
+        {
+          "name": "Centras",
+          "time": "08:12"
+        },
+        {
+          "name": "Universitetas",
+          "time": "08:25"
+        }
+      ]
+    },
+    {
+      "id": "trip-002",
+      "route_number": "1",
+      "direction": "Universitetas -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "08:35"
+        },
+        {
+          "name": "Centras",
+          "time": "08:48"
+        },
+        {
+          "name": "Stotis",
+          "time": "09:00"
+        }
+      ]
+    }
+  ]
+}
