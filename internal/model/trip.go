@@ -8,3 +8,12 @@ type Trip struct {
 	Direction   string     `json:"direction"`
 	Stops       *list.List `json:"-"`
 }
+
+func NewTrip(id, routeNumber, direction string) *Trip {
+	return &Trip{
+		ID:          id,
+		RouteNumber: routeNumber,
+		Direction:   direction,
+		Stops:       list.New(),
+	}
+}
