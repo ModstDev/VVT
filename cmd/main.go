@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/ModstDev/VVT/internal/storage"
+	"github.com/ModstDev/VVT/internal/ui"
 )
 
 func main() {
@@ -15,12 +15,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("=== VIEŠOJO TRANSPORTO TVARKARAŠTIS ===")
-	timetable.PrintTrips()
-
-	if err := storage.Save(filePath, timetable); err != nil {
+	if err := ui.Run(timetable, filePath); err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println("\nTvarkaraštis išsaugotas.")
 }
