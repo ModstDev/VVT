@@ -32,7 +32,7 @@ func (s *Schedule) AddTrip(trip *model.Trip) error {
 			return fmt.Errorf("invalid trip in schedule")
 		}
 		if existingTrip.ID == trip.ID {
-			return fmt.Errorf("trip with ID %s alreadya exists in schedule", trip.ID)
+			return fmt.Errorf("trip with ID %s already exists in schedule", trip.ID)
 		}
 	}
 
