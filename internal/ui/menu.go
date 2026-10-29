@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/ModstDev/VVT/internal/model"
 	"github.com/ModstDev/VVT/internal/schedule"
@@ -38,7 +39,8 @@ func Run(timetable *schedule.Schedule, filePath string) error {
 		fmt.Println("4. Redaguoti reiso stotelės laiką")
 		fmt.Println("5. Pakeisti maršruto stotelės pavadinimą")
 		fmt.Println("6. Ištrinti maršruto stotelę")
-		fmt.Println("7. Išsaugoti ir išeiti")
+		fmt.Println("7. Peržiūrėti stotelės tvarkaraštį")
+		fmt.Println("8. Išsaugoti ir išeiti")
 		fmt.Print("Pasirinkimas: ")
 
 		if !scanner.Scan() {
@@ -68,6 +70,9 @@ func Run(timetable *schedule.Schedule, filePath string) error {
 			clearCLI()
 			removeRouteStop(scanner, timetable)
 		case "7":
+			clearCLI()
+			showStopSchedule(scanner, timetable)
+		case "8":
 			clearCLI()
 			if err := storage.Save(filePath, timetable); err != nil {
 				return err
@@ -215,4 +220,41 @@ func removeRouteStop(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 	}
 
 	fmt.Printf("Pašalinta stotelių: %d\n", count)
+}
+
+func showStopSchedule(scanner *bufio.Scanner, timetable *schedule.Schedule) {
+	fmt.Print("Stotelės pavadinimas: ")
+	if !scanner.Scan() {
+		return
+	}
+	stopName := strings.TrimSpace(scanner.Text())
+
+	now := time.Now()
+
+	arrivals, err := timetable.UpcomingArrivals(stopName, now, 5)
+	if err != nil {
+		fmt.Println("Klaida: ", err)
+		return
+	}
+
+	fmt.Printf("\nStotelė: %s\n", stopName)
+	fmt.Printf("Dabartinis laikas: %s\n", now.Format("15:04"))
+	fmt.Println("------------------------------------------------")
+
+	if len(arrivals) == 0 {
+		fmt.Println("Šioje stotelėje reisų nerasta.")
+		return
+	}
+
+	fmt.Printf("%-12s %-12s %-8s %s\n",
+		"Reisas", "Maršrutas", "Laikas", "Liko")
+
+	for _, arrival := range arrivals {
+		fmt.Printf("%-12s %-12s %-8s %d min.\n",
+			arrival.TripID,
+			arrival.RouteNumber,
+			arrival.ArrivalTime,
+			arrival.MinutesUntil,
+		)
+	}
 }
