@@ -151,7 +151,7 @@ func formatMinutes(minutes int) string {
 	minutesPart := minuteOfDay % 60
 
 	if day > 0 {
-		return fmt.Sprintf("%02d:%02d (+%d d)",
+		return fmt.Sprintf("%02d:%02d (+%d d (teks palaukti kitos dienos))",
 			hours,
 			minutesPart,
 			day,

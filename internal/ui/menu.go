@@ -336,7 +336,33 @@ func findFastestTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 		)
 
 		fmt.Printf("   Kryptis: %s\n", result.Direction)
-		fmt.Printf("   Kelias: %s -> %s\n", result.FromStop, result.ToStop)
+		fmt.Println("   Kelias:")
+
+		for tripElement := timetable.Trips.Front(); tripElement != nil; tripElement = tripElement.Next() {
+			trip := tripElement.Value.(*model.Trip)
+
+			if trip.ID == result.TripID {
+				printPath := false
+
+				for stopElement := trip.Stops.Front(); stopElement != nil; stopElement = stopElement.Next() {
+					stop := stopElement.Value.(model.Stop)
+
+					if strings.EqualFold(stop.Name, result.FromStop) {
+						printPath = true
+					}
+
+					if printPath {
+						fmt.Printf("      %s - %s\n", stop.Name, stop.Time)
+					}
+
+					if strings.EqualFold(stop.Name, result.ToStop) && printPath {
+						break
+					}
+				}
+
+				break
+			}
+		}
 		fmt.Printf("   Išvykimas: %s\n", result.DepartureTime)
 		fmt.Printf("   Atvykimas: %s\n", result.ArrivalTime)
 		fmt.Printf("   Trukmė: %d min.\n", result.Duration)
