@@ -7,23 +7,23 @@
       "stops": [
         {
           "name": "Stotis",
-          "time": "08:00"
+          "time": "05:45"
         },
         {
           "name": "Rotuse",
-          "time": "08:07"
+          "time": "05:52"
         },
         {
-          "name": "Miesto centras",
-          "time": "08:12"
+          "name": "Centras",
+          "time": "05:58"
         },
         {
           "name": "Parkas",
-          "time": "08:18"
+          "time": "06:05"
         },
         {
           "name": "Universitetas",
-          "time": "08:25"
+          "time": "06:12"
         }
       ]
     },
@@ -34,23 +34,23 @@
       "stops": [
         {
           "name": "Universitetas",
-          "time": "08:35"
+          "time": "06:20"
         },
         {
           "name": "Parkas",
-          "time": "08:41"
+          "time": "06:27"
         },
         {
-          "name": "Miesto centras",
-          "time": "08:48"
+          "name": "Centras",
+          "time": "06:34"
         },
         {
           "name": "Rotuse",
-          "time": "08:53"
+          "time": "06:40"
         },
         {
           "name": "Stotis",
-          "time": "09:00"
+          "time": "06:47"
         }
       ]
     },
@@ -61,53 +61,286 @@
       "stops": [
         {
           "name": "Stotis",
-          "time": "09:00"
+          "time": "06:15"
         },
         {
           "name": "Rotuse",
-          "time": "09:06"
+          "time": "06:22"
         },
         {
-          "name": "Miesto centras",
-          "time": "09:11"
+          "name": "Centras",
+          "time": "06:28"
         },
         {
           "name": "Parkas",
-          "time": "09:17"
+          "time": "06:35"
         },
         {
           "name": "Universitetas",
-          "time": "09:23"
+          "time": "06:42"
         }
       ]
     },
     {
       "id": "trip-004",
-      "route_number": "2",
-      "direction": "Stotis -\u003e Oro uostas",
+      "route_number": "1",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
-          "time": "08:05"
+          "time": "07:00"
+        },
+        {
+          "name": "Rotuse",
+          "time": "07:07"
         },
         {
           "name": "Centras",
-          "time": "08:13"
+          "time": "07:13"
         },
         {
-          "name": "Ligonine",
-          "time": "08:22"
+          "name": "Parkas",
+          "time": "07:20"
         },
         {
-          "name": "Oro uostas",
-          "time": "08:38"
+          "name": "Universitetas",
+          "time": "07:27"
         }
       ]
     },
     {
       "id": "trip-005",
       "route_number": "2",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "05:55"
+        },
+        {
+          "name": "Centras",
+          "time": "06:03"
+        },
+        {
+          "name": "Ligonine",
+          "time": "06:12"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "06:28"
+        }
+      ]
+    },
+    {
+      "id": "trip-006",
+      "route_number": "2",
       "direction": "Oro uostas -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Oro uostas",
+          "time": "06:40"
+        },
+        {
+          "name": "Ligonine",
+          "time": "06:56"
+        },
+        {
+          "name": "Centras",
+          "time": "07:05"
+        },
+        {
+          "name": "Stotis",
+          "time": "07:13"
+        }
+      ]
+    },
+    {
+      "id": "trip-007",
+      "route_number": "2",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "07:10"
+        },
+        {
+          "name": "Centras",
+          "time": "07:18"
+        },
+        {
+          "name": "Ligonine",
+          "time": "07:27"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "07:43"
+        }
+      ]
+    },
+    {
+      "id": "trip-008",
+      "route_number": "3",
+      "direction": "Stotis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "06:05"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "06:12"
+        },
+        {
+          "name": "Universitetas",
+          "time": "06:25"
+        }
+      ]
+    },
+    {
+      "id": "trip-009",
+      "route_number": "3",
+      "direction": "Stotis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "06:35"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "06:42"
+        },
+        {
+          "name": "Universitetas",
+          "time": "06:55"
+        }
+      ]
+    },
+    {
+      "id": "trip-010",
+      "route_number": "3",
+      "direction": "Universitetas -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "07:05"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "07:18"
+        },
+        {
+          "name": "Stotis",
+          "time": "07:25"
+        }
+      ]
+    },
+    {
+      "id": "trip-011",
+      "route_number": "4",
+      "direction": "Centras -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Centras",
+          "time": "06:10"
+        },
+        {
+          "name": "Ligonine",
+          "time": "06:19"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "06:35"
+        }
+      ]
+    },
+    {
+      "id": "trip-012",
+      "route_number": "4",
+      "direction": "Centras -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Centras",
+          "time": "06:50"
+        },
+        {
+          "name": "Ligonine",
+          "time": "06:59"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "07:15"
+        }
+      ]
+    },
+    {
+      "id": "trip-013",
+      "route_number": "5",
+      "direction": "Stotis -\u003e Senamiestis",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "07:20"
+        },
+        {
+          "name": "Rotuse",
+          "time": "07:27"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "07:34"
+        }
+      ]
+    },
+    {
+      "id": "trip-014",
+      "route_number": "5",
+      "direction": "Senamiestis -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Senamiestis",
+          "time": "07:45"
+        },
+        {
+          "name": "Rotuse",
+          "time": "07:52"
+        },
+        {
+          "name": "Stotis",
+          "time": "07:59"
+        }
+      ]
+    },
+    {
+      "id": "trip-015",
+      "route_number": "6",
+      "direction": "Universitetas -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "08:00"
+        },
+        {
+          "name": "Parkas",
+          "time": "08:08"
+        },
+        {
+          "name": "Centras",
+          "time": "08:15"
+        },
+        {
+          "name": "Ligonine",
+          "time": "08:24"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "08:40"
+        }
+      ]
+    },
+    {
+      "id": "trip-016",
+      "route_number": "6",
+      "direction": "Oro uostas -\u003e Universitetas",
       "stops": [
         {
           "name": "Oro uostas",
@@ -115,110 +348,499 @@
         },
         {
           "name": "Ligonine",
-          "time": "09:15"
+          "time": "09:16"
         },
         {
           "name": "Centras",
-          "time": "09:24"
+          "time": "09:25"
         },
         {
+          "name": "Parkas",
+          "time": "09:32"
+        },
+        {
+          "name": "Universitetas",
+          "time": "09:40"
+        }
+      ]
+    },
+    {
+      "id": "trip-017",
+      "route_number": "7",
+      "direction": "Stotis -\u003e Centras",
+      "stops": [
+        {
           "name": "Stotis",
+          "time": "23:35"
+        },
+        {
+          "name": "Rotuse",
+          "time": "23:43"
+        },
+        {
+          "name": "Centras",
+          "time": "23:52"
+        }
+      ]
+    },
+    {
+      "id": "trip-018",
+      "route_number": "8",
+      "direction": "Centras -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Centras",
+          "time": "23:50"
+        },
+        {
+          "name": "Parkas",
+          "time": "23:58"
+        },
+        {
+          "name": "Universitetas",
+          "time": "00:12"
+        }
+      ]
+    },
+    {
+      "id": "trip-019",
+      "route_number": "8",
+      "direction": "Universitetas -\u003e Centras",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "00:30"
+        },
+        {
+          "name": "Parkas",
+          "time": "00:43"
+        },
+        {
+          "name": "Centras",
+          "time": "00:51"
+        }
+      ]
+    },
+    {
+      "id": "trip-020",
+      "route_number": "9",
+      "direction": "Stotis -\u003e Ligonine",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "08:15"
+        },
+        {
+          "name": "Centras",
+          "time": "08:23"
+        },
+        {
+          "name": "Ligonine",
+          "time": "08:34"
+        }
+      ]
+    },
+    {
+      "id": "trip-021",
+      "route_number": "9",
+      "direction": "Stotis -\u003e Ligonine",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "08:30"
+        },
+        {
+          "name": "Centras",
+          "time": "08:38"
+        },
+        {
+          "name": "Ligonine",
+          "time": "08:49"
+        }
+      ]
+    },
+    {
+      "id": "trip-022",
+      "route_number": "10",
+      "direction": "Parkas -\u003e Senamiestis",
+      "stops": [
+        {
+          "name": "Parkas",
+          "time": "09:10"
+        },
+        {
+          "name": "Centras",
+          "time": "09:18"
+        },
+        {
+          "name": "Rotuse",
+          "time": "09:25"
+        },
+        {
+          "name": "Senamiestis",
           "time": "09:32"
         }
       ]
     },
     {
-      "id": "trip-006",
-      "route_number": "3",
-      "direction": "Stotis -\u003e Universitetas",
+      "id": "trip-023",
+      "route_number": "11",
+      "direction": "Universitetas -\u003e Stotis",
       "stops": [
-        {
-          "name": "Stotis",
-          "time": "08:10"
-        },
-        {
-          "name": "Senamiestis",
-          "time": "08:16"
-        },
         {
           "name": "Universitetas",
-          "time": "08:29"
-        }
-      ]
-    },
-    {
-      "id": "trip-007",
-      "route_number": "4",
-      "direction": "Centras -\u003e Oro uostas",
-      "stops": [
-        {
-          "name": "Centras",
-          "time": "08:20"
-        },
-        {
-          "name": "Ligonine",
-          "time": "08:29"
-        },
-        {
-          "name": "Oro uostas",
-          "time": "08:45"
-        }
-      ]
-    },
-    {
-      "id": "trip-008",
-      "route_number": "5",
-      "direction": "Stotis -\u003e Centras",
-      "stops": [
-        {
-          "name": "Stotis",
-          "time": "23:45"
-        },
-        {
-          "name": "Rotuse",
-          "time": "23:53"
-        },
-        {
-          "name": "Centras",
-          "time": "00:05"
-        }
-      ]
-    },
-    {
-      "id": "trip-009",
-      "route_number": "6",
-      "direction": "Centras -\u003e Universitetas",
-      "stops": [
-        {
-          "name": "Centras",
-          "time": "00:10"
-        },
-        {
-          "name": "Parkas",
-          "time": "00:17"
-        },
-        {
-          "name": "Universitetas",
-          "time": "00:24"
-        }
-      ]
-    },
-    {
-      "id": "trip-010",
-      "route_number": "7",
-      "direction": "Stotis -\u003e Universitetas",
-      "stops": [
-        {
-          "name": "Stotis",
           "time": "10:00"
         },
         {
           "name": "Centras",
-          "time": "10:08"
+          "time": "10:12"
+        },
+        {
+          "name": "Stotis",
+          "time": "10:25"
+        }
+      ]
+    },
+    {
+      "id": "trip-024",
+      "route_number": "12",
+      "direction": "Oro uostas -\u003e Senamiestis",
+      "stops": [
+        {
+          "name": "Oro uostas",
+          "time": "10:15"
+        },
+        {
+          "name": "Ligonine",
+          "time": "10:31"
+        },
+        {
+          "name": "Centras",
+          "time": "10:40"
+        },
+        {
+          "name": "Rotuse",
+          "time": "10:47"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "10:54"
+        }
+      ]
+    },
+    {
+      "id": "trip-025",
+      "route_number": "13",
+      "direction": "Senamiestis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Senamiestis",
+          "time": "11:00"
+        },
+        {
+          "name": "Rotuse",
+          "time": "11:07"
+        },
+        {
+          "name": "Centras",
+          "time": "11:13"
+        },
+        {
+          "name": "Parkas",
+          "time": "11:20"
         },
         {
           "name": "Universitetas",
-          "time": "10:20"
+          "time": "11:27"
+        }
+      ]
+    },
+    {
+      "id": "trip-026",
+      "route_number": "14",
+      "direction": "Stotis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "12:00"
+        },
+        {
+          "name": "Rotuse",
+          "time": "12:06"
+        },
+        {
+          "name": "Universitetas",
+          "time": "12:22"
+        }
+      ]
+    },
+    {
+      "id": "trip-027",
+      "route_number": "14",
+      "direction": "Stotis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "12:10"
+        },
+        {
+          "name": "Rotuse",
+          "time": "12:16"
+        },
+        {
+          "name": "Universitetas",
+          "time": "12:32"
+        }
+      ]
+    },
+    {
+      "id": "trip-028",
+      "route_number": "15",
+      "direction": "Centras -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Centras",
+          "time": "13:00"
+        },
+        {
+          "name": "Rotuse",
+          "time": "13:06"
+        },
+        {
+          "name": "Stotis",
+          "time": "13:13"
+        }
+      ]
+    },
+    {
+      "id": "trip-029",
+      "route_number": "16",
+      "direction": "Universitetas -\u003e Centras",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "14:00"
+        },
+        {
+          "name": "Parkas",
+          "time": "14:07"
+        },
+        {
+          "name": "Centras",
+          "time": "14:15"
+        }
+      ]
+    },
+    {
+      "id": "trip-030",
+      "route_number": "17",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "15:00"
+        },
+        {
+          "name": "Ligonine",
+          "time": "15:12"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "15:30"
+        }
+      ]
+    },
+    {
+      "id": "trip-031",
+      "route_number": "18",
+      "direction": "Oro uostas -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Oro uostas",
+          "time": "16:00"
+        },
+        {
+          "name": "Ligonine",
+          "time": "16:17"
+        },
+        {
+          "name": "Stotis",
+          "time": "16:30"
+        }
+      ]
+    },
+    {
+      "id": "trip-032",
+      "route_number": "19",
+      "direction": "Centras -\u003e Parkas",
+      "stops": [
+        {
+          "name": "Centras",
+          "time": "17:10"
+        },
+        {
+          "name": "Parkas",
+          "time": "17:19"
+        }
+      ]
+    },
+    {
+      "id": "trip-033",
+      "route_number": "20",
+      "direction": "Parkas -\u003e Centras",
+      "stops": [
+        {
+          "name": "Parkas",
+          "time": "18:00"
+        },
+        {
+          "name": "Centras",
+          "time": "18:09"
+        }
+      ]
+    },
+    {
+      "id": "trip-034",
+      "route_number": "21",
+      "direction": "Stotis -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "19:00"
+        },
+        {
+          "name": "Centras",
+          "time": "19:08"
+        },
+        {
+          "name": "Parkas",
+          "time": "19:15"
+        },
+        {
+          "name": "Universitetas",
+          "time": "19:22"
+        }
+      ]
+    },
+    {
+      "id": "trip-035",
+      "route_number": "22",
+      "direction": "Universitetas -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "20:00"
+        },
+        {
+          "name": "Centras",
+          "time": "20:12"
+        },
+        {
+          "name": "Ligonine",
+          "time": "20:21"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "20:37"
+        }
+      ]
+    },
+    {
+      "id": "trip-036",
+      "route_number": "23",
+      "direction": "Stotis -\u003e Senamiestis",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "21:10"
+        },
+        {
+          "name": "Rotuse",
+          "time": "21:18"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "21:25"
+        }
+      ]
+    },
+    {
+      "id": "trip-037",
+      "route_number": "24",
+      "direction": "Universitetas -\u003e Stotis",
+      "stops": [
+        {
+          "name": "Universitetas",
+          "time": "22:00"
+        },
+        {
+          "name": "Parkas",
+          "time": "22:07"
+        },
+        {
+          "name": "Centras",
+          "time": "22:14"
+        },
+        {
+          "name": "Stotis",
+          "time": "22:22"
+        }
+      ]
+    },
+    {
+      "id": "trip-038",
+      "route_number": "25",
+      "direction": "Stotis -\u003e Centras",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "22:40"
+        },
+        {
+          "name": "Rotuse",
+          "time": "22:48"
+        },
+        {
+          "name": "Centras",
+          "time": "22:56"
+        }
+      ]
+    },
+    {
+      "id": "trip-039",
+      "route_number": "26",
+      "direction": "Centras -\u003e Universitetas",
+      "stops": [
+        {
+          "name": "Centras",
+          "time": "23:40"
+        },
+        {
+          "name": "Parkas",
+          "time": "23:49"
+        },
+        {
+          "name": "Universitetas",
+          "time": "23:59"
+        }
+      ]
+    },
+    {
+      "id": "trip-040",
+      "route_number": "27",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "23:50"
+        },
+        {
+          "name": "Ligonine",
+          "time": "00:03"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "00:20"
         }
       ]
     }

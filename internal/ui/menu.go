@@ -40,7 +40,8 @@ func Run(timetable *schedule.Schedule, filePath string) error {
 		fmt.Println("5. Pakeisti maršruto stotelės pavadinimą")
 		fmt.Println("6. Ištrinti maršruto stotelę")
 		fmt.Println("7. Peržiūrėti stotelės tvarkaraštį")
-		fmt.Println("8. Išsaugoti ir išeiti")
+		fmt.Println("8. Greičiausio tiesioginio reiso paieška")
+		fmt.Println("9. Išsaugoti ir išeiti")
 		fmt.Print("Pasirinkimas: ")
 
 		if !scanner.Scan() {
@@ -73,6 +74,9 @@ func Run(timetable *schedule.Schedule, filePath string) error {
 			clearCLI()
 			showStopSchedule(scanner, timetable)
 		case "8":
+			clearCLI()
+			findFastestTrips(scanner, timetable)
+		case "9":
 			clearCLI()
 			if err := storage.Save(filePath, timetable); err != nil {
 				return err
@@ -256,5 +260,85 @@ func showStopSchedule(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 			arrival.ArrivalTime,
 			arrival.MinutesUntil,
 		)
+	}
+}
+
+func findFastestTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
+	fmt.Print("Pradinė stotelė: ")
+	if !scanner.Scan() {
+		return
+	}
+	from := strings.TrimSpace(scanner.Text())
+
+	fmt.Print("Galutinė stotelė: ")
+	if !scanner.Scan() {
+		return
+	}
+	to := strings.TrimSpace(scanner.Text())
+
+	fmt.Println("\nIšvykimo laikas:")
+	fmt.Println("1. Dabartinis kompiuterio laikas")
+	fmt.Println("2. Vartotojo nurodytas laikas")
+	fmt.Print("Pasirinkimas: ")
+
+	if !scanner.Scan() {
+		return
+	}
+
+	var departure time.Time
+
+	switch strings.TrimSpace(scanner.Text()) {
+	case "1":
+		departure = time.Now()
+
+	case "2":
+		fmt.Print("Įveskite išvykimo laiką (HH:MM): ")
+
+		if !scanner.Scan() {
+			return
+		}
+
+		input := strings.TrimSpace(scanner.Text())
+
+		parsed, err := time.Parse("15:04", input)
+		if err != nil {
+			fmt.Println("Neteisingas laiko formatas. Naudokite HH:MM")
+			return
+		}
+
+		departure = parsed
+
+	default:
+		fmt.Println("Neteisingas pasirinkimas.")
+		return
+	}
+
+	results, err := timetable.FindFastestTrips(
+		from,
+		to,
+		departure,
+		3,
+	)
+	if err != nil {
+		fmt.Println("Klaida: ", err)
+		return
+	}
+
+	fmt.Printf("\nGreičiausi reisai: %s -> %s\n", from, to)
+	fmt.Printf("Išvykimo paieškos laikas: %s\n", departure.Format("15:04"))
+	fmt.Println("======================================================")
+
+	for i, result := range results {
+		fmt.Printf("\n%d. Maršrutas %s (reisas %s)\n",
+			i+1,
+			result.RouteNumber,
+			result.TripID,
+		)
+
+		fmt.Printf("   Kryptis: %s\n", result.Direction)
+		fmt.Printf("   Kelias: %s -> %s\n", result.FromStop, result.ToStop)
+		fmt.Printf("   Išvykimas: %s\n", result.DepartureTime)
+		fmt.Printf("   Atvykimas: %s\n", result.ArrivalTime)
+		fmt.Printf("   Trukmė: %d min.\n", result.Duration)
 	}
 }
