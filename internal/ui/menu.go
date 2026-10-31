@@ -41,7 +41,8 @@ func Run(timetable *schedule.Schedule, filePath string) error {
 		fmt.Println("6. Ištrinti maršruto stotelę")
 		fmt.Println("7. Peržiūrėti stotelės tvarkaraštį")
 		fmt.Println("8. Greičiausio tiesioginio reiso paieška")
-		fmt.Println("9. Išsaugoti ir išeiti")
+		fmt.Println("9. Importuoti papildomus reisus iš JSON")
+		fmt.Println("10. Išsaugoti ir išeiti")
 		fmt.Print("Pasirinkimas: ")
 
 		if !scanner.Scan() {
@@ -77,6 +78,9 @@ func Run(timetable *schedule.Schedule, filePath string) error {
 			clearCLI()
 			findFastestTrips(scanner, timetable)
 		case "9":
+			clearCLI()
+			importTrips(scanner, timetable)
+		case "10":
 			clearCLI()
 			if err := storage.Save(filePath, timetable); err != nil {
 				return err
@@ -367,4 +371,78 @@ func findFastestTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 		fmt.Printf("   Atvykimas: %s\n", result.ArrivalTime)
 		fmt.Printf("   Trukmė: %d min.\n", result.Duration)
 	}
+}
+
+func importTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
+	fmt.Print("JSON failo kelias: ")
+
+	if !scanner.Scan() {
+		return
+	}
+
+	path := strings.TrimSpace(scanner.Text())
+
+	imported, err := storage.Load(path)
+	if err != nil {
+		fmt.Println("Klaida skaitant JSON:", err)
+		return
+	}
+
+	added := 0
+	ignored := 0
+	replaced := 0
+
+	for element := imported.Trips.Front(); element != nil; element = element.Next() {
+		newTrip := element.Value.(*model.Trip)
+
+		duplicate := timetable.FindDuplicateTrip(newTrip)
+
+		if duplicate != nil {
+			fmt.Printf(
+				"\nReisas su ID %s jau egzistuoja (maršrutas %s).\n",
+				duplicate.ID,
+				duplicate.RouteNumber,
+			)
+
+			fmt.Println("1. Ignoruoti naują reisą")
+			fmt.Println("2. Pašalinti seną reisą ir įkelti naują")
+			fmt.Print("Pasirinkimas: ")
+
+			if !scanner.Scan() {
+				return
+			}
+
+			switch strings.TrimSpace(scanner.Text()) {
+			case "1":
+				ignored++
+				continue
+
+			case "2":
+				timetable.RemoveTrip(duplicate.ID)
+				if err := timetable.AddTrip(newTrip); err != nil {
+					fmt.Println("Klaida pridedant reisą:", err)
+					continue
+				}
+				replaced++
+
+			default:
+				fmt.Println("Neteisingas pasirinkimas. Reisas ignoruojamas.")
+				ignored++
+			}
+
+			continue
+		}
+
+		if err := timetable.AddTrip(newTrip); err != nil {
+			fmt.Println("Klaida pridedant reisą:", err)
+			continue
+		}
+
+		added++
+	}
+
+	fmt.Println("\nImportavimas baigtas.")
+	fmt.Println("Pridėta:", added)
+	fmt.Println("Pakeista:", replaced)
+	fmt.Println("Ignoruota:", ignored)
 }

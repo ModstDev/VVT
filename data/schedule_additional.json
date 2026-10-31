@@ -1,0 +1,61 @@
+{
+  "trips": [
+    {
+      "id": "trip-001",
+      "route_number": "99",
+      "direction": "Testinis marsrutas - dublikato tikrinimas",
+      "stops": [
+        {
+          "name": "Testine stotis",
+          "time": "09:00"
+        },
+        {
+          "name": "Testinis centras",
+          "time": "09:15"
+        },
+        {
+          "name": "Testinis universitetas",
+          "time": "09:30"
+        }
+      ]
+    },
+    {
+      "id": "trip-extra-001",
+      "route_number": "77",
+      "direction": "Stotis - Universitetas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "10:00"
+        },
+        {
+          "name": "Centras",
+          "time": "10:12"
+        },
+        {
+          "name": "Universitetas",
+          "time": "10:25"
+        }
+      ]
+    },
+    {
+      "id": "trip-extra-002",
+      "route_number": "88",
+      "direction": "Oro uostas - Senamiestis",
+      "stops": [
+        {
+          "name": "Oro uostas",
+          "time": "23:40"
+        },
+        {
+          "name": "Verslo centras",
+          "time": "23:55"
+        },
+        {
+          "name": "Senamiestis",
+          "time": "00:15"
+        }
+      ]
+    }
+  ]
+}

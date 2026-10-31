@@ -3,6 +3,7 @@ package schedule
 import (
 	"container/list"
 	"fmt"
+	"strings"
 
 	"github.com/ModstDev/VVT/internal/model"
 )
@@ -77,4 +78,47 @@ func (s *Schedule) PrintTrips() {
 			trip.Direction,
 		)
 	}
+}
+
+func (s *Schedule) FindDuplicateTrip(candidate *model.Trip) *model.Trip {
+	for element := s.Trips.Front(); element != nil; element = element.Next() {
+		existing := element.Value.(*model.Trip)
+
+		if existing.ID == candidate.ID {
+			return existing
+		}
+
+		if existing.RouteNumber != candidate.RouteNumber ||
+			existing.Direction != candidate.Direction {
+			continue
+		}
+
+		if existing.Stops.Len() != candidate.Stops.Len() {
+			continue
+		}
+
+		existingStop := existing.Stops.Front()
+		candidateStop := candidate.Stops.Front()
+
+		identical := true
+
+		for existingStop != nil && candidateStop != nil {
+			a := existingStop.Value.(model.Stop)
+			b := candidateStop.Value.(model.Stop)
+
+			if !strings.EqualFold(a.Name, b.Name) || a.Time != b.Time {
+				identical = false
+				break
+			}
+
+			existingStop = existingStop.Next()
+			candidateStop = candidateStop.Next()
+		}
+
+		if identical {
+			return existing
+		}
+	}
+
+	return nil
 }
