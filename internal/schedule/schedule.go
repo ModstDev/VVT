@@ -96,10 +96,11 @@ func (s *Schedule) FindDuplicateTripExclude(candidate *model.Trip, tripIDExclude
 			return existing
 		}
 
-		if existing.RouteNumber != candidate.RouteNumber ||
+		// Nereikalingai tikriname maršruto numerį ir kryptį, nes tai gali būti skirtingi maršrutai su tuo pačiu sustojimų sąrašu
+		/*if existing.RouteNumber != candidate.RouteNumber ||
 			existing.Direction != candidate.Direction {
 			continue
-		}
+		}*/
 
 		if existing.Stops.Len() != candidate.Stops.Len() {
 			continue

@@ -3,7 +3,7 @@
     {
       "id": "A-001",
       "route_number": "1",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -30,7 +30,7 @@
     {
       "id": "A-002",
       "route_number": "1",
-      "direction": "Universitetas -> Stotis",
+      "direction": "Universitetas -\u003e Stotis",
       "stops": [
         {
           "name": "Universitetas",
@@ -57,7 +57,7 @@
     {
       "id": "A-003",
       "route_number": "1",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -84,7 +84,7 @@
     {
       "id": "A-004",
       "route_number": "1",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -111,7 +111,7 @@
     {
       "id": "A-005",
       "route_number": "2",
-      "direction": "Stotis -> Oro uostas",
+      "direction": "Stotis -\u003e Oro uostas",
       "stops": [
         {
           "name": "Stotis",
@@ -134,7 +134,7 @@
     {
       "id": "A-006",
       "route_number": "2",
-      "direction": "Oro uostas -> Stotis",
+      "direction": "Oro uostas -\u003e Stotis",
       "stops": [
         {
           "name": "Oro uostas",
@@ -157,7 +157,7 @@
     {
       "id": "A-007",
       "route_number": "2",
-      "direction": "Stotis -> Oro uostas",
+      "direction": "Stotis -\u003e Oro uostas",
       "stops": [
         {
           "name": "Stotis",
@@ -180,7 +180,7 @@
     {
       "id": "A-008",
       "route_number": "3",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -199,7 +199,7 @@
     {
       "id": "A-009",
       "route_number": "3",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -218,7 +218,7 @@
     {
       "id": "A-010",
       "route_number": "3",
-      "direction": "Universitetas -> Stotis",
+      "direction": "Universitetas -\u003e Stotis",
       "stops": [
         {
           "name": "Universitetas",
@@ -237,7 +237,7 @@
     {
       "id": "A-011",
       "route_number": "4",
-      "direction": "Centras -> Oro uostas",
+      "direction": "Centras -\u003e Oro uostas",
       "stops": [
         {
           "name": "Centras",
@@ -256,7 +256,7 @@
     {
       "id": "A-012",
       "route_number": "4",
-      "direction": "Centras -> Oro uostas",
+      "direction": "Centras -\u003e Oro uostas",
       "stops": [
         {
           "name": "Centras",
@@ -275,7 +275,7 @@
     {
       "id": "A-013",
       "route_number": "5",
-      "direction": "Stotis -> Senamiestis",
+      "direction": "Stotis -\u003e Senamiestis",
       "stops": [
         {
           "name": "Stotis",
@@ -294,7 +294,7 @@
     {
       "id": "A-014",
       "route_number": "5",
-      "direction": "Senamiestis -> Stotis",
+      "direction": "Senamiestis -\u003e Stotis",
       "stops": [
         {
           "name": "Senamiestis",
@@ -313,7 +313,7 @@
     {
       "id": "A-015",
       "route_number": "6",
-      "direction": "Universitetas -> Oro uostas",
+      "direction": "Universitetas -\u003e Oro uostas",
       "stops": [
         {
           "name": "Universitetas",
@@ -340,7 +340,7 @@
     {
       "id": "A-016",
       "route_number": "6",
-      "direction": "Oro uostas -> Universitetas",
+      "direction": "Oro uostas -\u003e Universitetas",
       "stops": [
         {
           "name": "Oro uostas",
@@ -367,7 +367,7 @@
     {
       "id": "A-017",
       "route_number": "7",
-      "direction": "Stotis -> Centras",
+      "direction": "Stotis -\u003e Centras",
       "stops": [
         {
           "name": "Stotis",
@@ -386,7 +386,7 @@
     {
       "id": "A-018",
       "route_number": "8",
-      "direction": "Centras -> Universitetas",
+      "direction": "Centras -\u003e Universitetas",
       "stops": [
         {
           "name": "Centras",
@@ -405,7 +405,7 @@
     {
       "id": "A-019",
       "route_number": "8",
-      "direction": "Universitetas -> Centras",
+      "direction": "Universitetas -\u003e Centras",
       "stops": [
         {
           "name": "Universitetas",
@@ -424,7 +424,7 @@
     {
       "id": "A-020",
       "route_number": "9",
-      "direction": "Stotis -> Ligonine",
+      "direction": "Stotis -\u003e Ligonine",
       "stops": [
         {
           "name": "Stotis",
@@ -443,7 +443,7 @@
     {
       "id": "A-021",
       "route_number": "9",
-      "direction": "Stotis -> Ligonine",
+      "direction": "Stotis -\u003e Ligonine",
       "stops": [
         {
           "name": "Stotis",
@@ -462,7 +462,7 @@
     {
       "id": "A-022",
       "route_number": "10",
-      "direction": "Parkas -> Senamiestis",
+      "direction": "Parkas -\u003e Senamiestis",
       "stops": [
         {
           "name": "Parkas",
@@ -485,7 +485,7 @@
     {
       "id": "A-023",
       "route_number": "11",
-      "direction": "Universitetas -> Stotis",
+      "direction": "Universitetas -\u003e Stotis",
       "stops": [
         {
           "name": "Universitetas",
@@ -504,7 +504,7 @@
     {
       "id": "A-024",
       "route_number": "12",
-      "direction": "Oro uostas -> Senamiestis",
+      "direction": "Oro uostas -\u003e Senamiestis",
       "stops": [
         {
           "name": "Oro uostas",
@@ -531,7 +531,7 @@
     {
       "id": "A-025",
       "route_number": "13",
-      "direction": "Senamiestis -> Universitetas",
+      "direction": "Senamiestis -\u003e Universitetas",
       "stops": [
         {
           "name": "Senamiestis",
@@ -558,7 +558,7 @@
     {
       "id": "A-026",
       "route_number": "14",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -577,7 +577,7 @@
     {
       "id": "A-027",
       "route_number": "14",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -596,7 +596,7 @@
     {
       "id": "A-028",
       "route_number": "15",
-      "direction": "Centras -> Stotis",
+      "direction": "Centras -\u003e Stotis",
       "stops": [
         {
           "name": "Centras",
@@ -615,7 +615,7 @@
     {
       "id": "A-029",
       "route_number": "16",
-      "direction": "Universitetas -> Centras",
+      "direction": "Universitetas -\u003e Centras",
       "stops": [
         {
           "name": "Universitetas",
@@ -634,7 +634,7 @@
     {
       "id": "A-030",
       "route_number": "17",
-      "direction": "Stotis -> Oro uostas",
+      "direction": "Stotis -\u003e Oro uostas",
       "stops": [
         {
           "name": "Stotis",
@@ -653,7 +653,7 @@
     {
       "id": "A-031",
       "route_number": "18",
-      "direction": "Oro uostas -> Stotis",
+      "direction": "Oro uostas -\u003e Stotis",
       "stops": [
         {
           "name": "Oro uostas",
@@ -672,7 +672,7 @@
     {
       "id": "A-032",
       "route_number": "19",
-      "direction": "Centras -> Parkas",
+      "direction": "Centras -\u003e Parkas",
       "stops": [
         {
           "name": "Centras",
@@ -687,7 +687,7 @@
     {
       "id": "A-033",
       "route_number": "20",
-      "direction": "Parkas -> Centras",
+      "direction": "Parkas -\u003e Centras",
       "stops": [
         {
           "name": "Parkas",
@@ -702,7 +702,7 @@
     {
       "id": "A-034",
       "route_number": "21",
-      "direction": "Stotis -> Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -725,7 +725,7 @@
     {
       "id": "A-035",
       "route_number": "22",
-      "direction": "Universitetas -> Oro uostas",
+      "direction": "Universitetas -\u003e Oro uostas",
       "stops": [
         {
           "name": "Universitetas",
@@ -748,7 +748,7 @@
     {
       "id": "A-036",
       "route_number": "23",
-      "direction": "Stotis -> Senamiestis",
+      "direction": "Stotis -\u003e Senamiestis",
       "stops": [
         {
           "name": "Stotis",
@@ -767,7 +767,7 @@
     {
       "id": "A-037",
       "route_number": "24",
-      "direction": "Universitetas -> Stotis",
+      "direction": "Universitetas -\u003e Stotis",
       "stops": [
         {
           "name": "Universitetas",
@@ -790,7 +790,7 @@
     {
       "id": "A-038",
       "route_number": "25",
-      "direction": "Stotis -> Centras",
+      "direction": "Stotis -\u003e Centras",
       "stops": [
         {
           "name": "Stotis",
@@ -809,7 +809,7 @@
     {
       "id": "A-039",
       "route_number": "26",
-      "direction": "Centras -> Universitetas",
+      "direction": "Centras -\u003e Universitetas",
       "stops": [
         {
           "name": "Centras",
@@ -828,7 +828,7 @@
     {
       "id": "A-040",
       "route_number": "27",
-      "direction": "Stotis -> Oro uostas",
+      "direction": "Stotis -\u003e Oro uostas",
       "stops": [
         {
           "name": "Stotis",
