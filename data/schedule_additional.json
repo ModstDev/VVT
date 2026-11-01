@@ -1,7 +1,7 @@
 {
   "trips": [
     {
-      "id": "trip-001",
+      "id": "A-001",
       "route_number": "99",
       "direction": "Testinis marsrutas - dublikato tikrinimas",
       "stops": [
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "trip-extra-001",
+      "id": "A-extra-001",
       "route_number": "77",
       "direction": "Stotis - Universitetas",
       "stops": [
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "trip-extra-002",
+      "id": "A-extra-002",
       "route_number": "88",
       "direction": "Oro uostas - Senamiestis",
       "stops": [

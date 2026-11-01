@@ -172,9 +172,46 @@ func editTripStopTime(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 	}
 	newTime := strings.TrimSpace(scanner.Text())
 
-	if err := timetable.EditTripStopTime(id, index-1, newTime); err != nil {
+	duplicate, err := timetable.EditTripStopTime(id, index-1, newTime)
+	if err != nil {
 		fmt.Println("Klaida:", err)
 		return
+	}
+
+	if duplicate == nil {
+		fmt.Println("Stotelės laikas sėkmingai pakeistas.")
+		return
+	}
+
+	fmt.Printf(
+		"\nDĖMESIO! Pakeitus laiką, reisas taptų identiškas kitam reisui.\n",
+	)
+
+	fmt.Println("1. Pašalinti seną reisą ir išsaugoti pakeitimą")
+	fmt.Println("2. Ignoruoti pakeitimą")
+	fmt.Print("Pasirinkimas: ")
+
+	if !scanner.Scan() {
+		return
+	}
+
+	switch strings.TrimSpace(scanner.Text()) {
+	case "1":
+		timetable.RemoveTrip(duplicate.ID)
+
+		_, err := timetable.EditTripStopTime(id, index-1, newTime)
+		if err != nil {
+			fmt.Println("Klaida išsaugant pakeitimą:", err)
+			return
+		}
+
+		fmt.Println("Reiso laikas pakeistas ir senas reisas pašalintas.")
+
+	case "2":
+		fmt.Println("Pakeitimas ignoruotas. Senas laikas išsaugotas.")
+
+	default:
+		fmt.Println("Neteisingas pasirinkimas. Pakeitimas ignoruotas.")
 	}
 
 	fmt.Println("Reiso laikas pakeistas.")
@@ -199,7 +236,7 @@ func renameRouteStop(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 	}
 	newName := strings.TrimSpace(scanner.Text())
 
-	count, err := timetable.RenameRouteStop(route, oldName, newName)
+	count, err := timetable.RenameRouteStop(route, oldName, newName, scanner)
 	if err != nil {
 		fmt.Println("Klaida:", err)
 		return
@@ -221,7 +258,7 @@ func removeRouteStop(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 	}
 	stopName := strings.TrimSpace(scanner.Text())
 
-	count, err := timetable.RemoveRouteStop(route, stopName)
+	count, err := timetable.RemoveRouteStop(route, stopName, scanner)
 	if err != nil {
 		fmt.Println("Klaida:", err)
 		return

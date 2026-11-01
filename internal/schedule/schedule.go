@@ -81,8 +81,16 @@ func (s *Schedule) PrintTrips() {
 }
 
 func (s *Schedule) FindDuplicateTrip(candidate *model.Trip) *model.Trip {
+	return s.FindDuplicateTripExclude(candidate, "")
+}
+
+func (s *Schedule) FindDuplicateTripExclude(candidate *model.Trip, tripIDExclude string) *model.Trip {
 	for element := s.Trips.Front(); element != nil; element = element.Next() {
 		existing := element.Value.(*model.Trip)
+
+		if existing.ID == tripIDExclude {
+			continue
+		}
 
 		if existing.ID == candidate.ID {
 			return existing

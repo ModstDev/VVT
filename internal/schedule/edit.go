@@ -1,6 +1,7 @@
 package schedule
 
 import (
+	"bufio"
 	"fmt"
 	"strings"
 	"time"
@@ -12,18 +13,18 @@ func (s *Schedule) EditTripStopTime(
 	tripID string,
 	stopIndex int,
 	newTime string,
-) error {
+) (*model.Trip, error) {
 	if _, err := time.Parse("15:04", newTime); err != nil {
-		return fmt.Errorf("invalid time %q: use 06:06 format", newTime)
+		return nil, fmt.Errorf("invalid time %q: use 06:06 format", newTime)
 	}
 
 	trip, found := s.FindTrip(tripID)
 	if !found {
-		return fmt.Errorf("trip with ID %q not found", tripID)
+		return nil, fmt.Errorf("trip with ID %q not found", tripID)
 	}
 
 	if stopIndex < 0 || stopIndex >= trip.Stops.Len() {
-		return fmt.Errorf("invalid stop index")
+		return nil, fmt.Errorf("invalid stop index")
 	}
 
 	element := trip.Stops.Front()
@@ -32,16 +33,28 @@ func (s *Schedule) EditTripStopTime(
 	}
 
 	stop := element.Value.(model.Stop)
+
+	oldTime := stop.Time
+
 	stop.Time = newTime
 	element.Value = stop
 
-	return nil
+	duplicate := s.FindDuplicateTripExclude(trip, trip.ID)
+	if duplicate != nil {
+		stop.Time = oldTime
+		element.Value = stop
+
+		return duplicate, nil
+	}
+
+	return nil, nil
 }
 
 func (s *Schedule) RenameRouteStop(
 	routeNumber string,
 	oldName string,
 	newName string,
+	scanner *bufio.Scanner,
 ) (int, error) {
 	oldName = strings.TrimSpace(oldName)
 	newName = strings.TrimSpace(newName)
@@ -56,11 +69,15 @@ func (s *Schedule) RenameRouteStop(
 
 	updated := 0
 
-	for tripElement := s.Trips.Front(); tripElement != nil; tripElement = tripElement.Next() {
+	for tripElement := s.Trips.Front(); tripElement != nil; {
+		nextTrip := tripElement.Next()
 		trip := tripElement.Value.(*model.Trip)
 		if trip.RouteNumber != routeNumber {
+			tripElement = nextTrip
 			continue
 		}
+
+		tripUpdated := false
 
 		for stopElement := trip.Stops.Front(); stopElement != nil; stopElement = stopElement.Next() {
 			stop := stopElement.Value.(model.Stop)
@@ -69,8 +86,39 @@ func (s *Schedule) RenameRouteStop(
 				stop.Name = newName
 				stopElement.Value = stop
 				updated++
+				tripUpdated = true
 			}
 		}
+		if tripUpdated {
+			duplicate := s.FindDuplicateTripExclude(trip, trip.ID)
+			if duplicate != nil {
+				fmt.Printf(
+					"\nReisas %s tapo identiškas reisui %s.\n",
+					trip.ID,
+					duplicate.ID,
+				)
+
+				fmt.Println("1. Pašalinti redaguotą reisą")
+				fmt.Println("2. Palikti pakeistą reisą")
+				fmt.Print("Pasirinkimas: ")
+
+				if !scanner.Scan() {
+					return updated, fmt.Errorf("nepavyko nuskaityti įvesties")
+				}
+
+				switch strings.TrimSpace(scanner.Text()) {
+				case "1":
+					s.Trips.Remove(tripElement)
+					updated--
+					fmt.Println("Redaguotas reisas pašalintas.")
+				case "2":
+					fmt.Println("Reisas paliktas.")
+				default:
+					fmt.Println("Neteisingas pasirinkimas. Paliekamas pakeistas reisas.")
+				}
+			}
+		}
+		tripElement = nextTrip
 	}
 
 	if updated == 0 {
@@ -82,6 +130,7 @@ func (s *Schedule) RenameRouteStop(
 func (s *Schedule) RemoveRouteStop(
 	routeNumber string,
 	stopName string,
+	scanner *bufio.Scanner,
 ) (int, error) {
 	stopName = strings.TrimSpace(stopName)
 	if stopName == "" {
@@ -90,12 +139,16 @@ func (s *Schedule) RemoveRouteStop(
 
 	removed := 0
 
-	for tripElement := s.Trips.Front(); tripElement != nil; tripElement = tripElement.Next() {
+	for tripElement := s.Trips.Front(); tripElement != nil; {
+		nextTrip := tripElement.Next()
 		trip := tripElement.Value.(*model.Trip)
 
 		if trip.RouteNumber != routeNumber {
+			tripElement = nextTrip
 			continue
 		}
+
+		tripRemoved := 0
 
 		for stopElement := trip.Stops.Front(); stopElement != nil; {
 			next := stopElement.Next()
@@ -104,10 +157,42 @@ func (s *Schedule) RemoveRouteStop(
 			if stop.Name == stopName {
 				trip.Stops.Remove(stopElement)
 				removed++
+				tripRemoved++
 			}
 
 			stopElement = next
 		}
+
+		if tripRemoved > 0 {
+			duplicate := s.FindDuplicateTripExclude(trip, trip.ID)
+			if duplicate != nil {
+				fmt.Printf(
+					"\nReisas %s tapo identiškas reisui %s.\n",
+					trip.ID,
+					duplicate.ID,
+				)
+
+				fmt.Println("1. Pašalinti redaguotą reisą")
+				fmt.Println("2. Palikti pakeistą reisą")
+				fmt.Print("Pasirinkimas: ")
+
+				if !scanner.Scan() {
+					return removed, fmt.Errorf("nepavyko nuskaityti įvesties")
+				}
+
+				switch strings.TrimSpace(scanner.Text()) {
+				case "1":
+					s.Trips.Remove(tripElement)
+					removed -= tripRemoved
+					fmt.Println("Redaguotas reisas pašalintas.")
+				case "2":
+					fmt.Println("Reisas paliktas.")
+				default:
+					fmt.Println("Neteisingas pasirinkimas. Paliekamas pakeistas reisas.")
+				}
+			}
+		}
+		tripElement = nextTrip
 	}
 
 	if removed == 0 {
