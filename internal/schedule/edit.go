@@ -13,6 +13,7 @@ func (s *Schedule) EditTripStopTime(
 	tripID string,
 	stopIndex int,
 	newTime string,
+	ignoreDuplicate bool,
 ) (*model.Trip, error) {
 	if _, err := time.Parse("15:04", newTime); err != nil {
 		return nil, fmt.Errorf("invalid time %q: use 06:06 format", newTime)
@@ -39,14 +40,16 @@ func (s *Schedule) EditTripStopTime(
 	stop.Time = newTime
 	element.Value = stop
 
-	duplicate := s.FindDuplicateTripExclude(trip, trip.ID)
-	if duplicate != nil {
-		stop.Time = oldTime
-		element.Value = stop
+	if !ignoreDuplicate {
+		duplicate := s.FindDuplicateTripExclude(trip, trip.ID)
 
-		return duplicate, nil
+		if duplicate != nil {
+			stop.Time = oldTime
+			element.Value = stop
+
+			return duplicate, nil
+		}
 	}
-
 	return nil, nil
 }
 

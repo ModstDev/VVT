@@ -172,7 +172,7 @@ func editTripStopTime(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 	}
 	newTime := strings.TrimSpace(scanner.Text())
 
-	duplicate, err := timetable.EditTripStopTime(id, index-1, newTime)
+	duplicate, err := timetable.EditTripStopTime(id, index-1, newTime, false)
 	if err != nil {
 		fmt.Println("Klaida:", err)
 		return
@@ -187,8 +187,8 @@ func editTripStopTime(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 		"\nDĖMESIO! Pakeitus laiką, reisas taptų identiškas kitam reisui.\n",
 	)
 
-	fmt.Println("1. Pašalinti seną reisą ir išsaugoti pakeitimą")
-	fmt.Println("2. Ignoruoti pakeitimą")
+	fmt.Println("1. Pašalinti pakeistą reisą ir palikti seną")
+	fmt.Println("2. Palikti pakeitimus ir palikti abu reisus")
 	fmt.Print("Pasirinkimas: ")
 
 	if !scanner.Scan() {
@@ -197,24 +197,24 @@ func editTripStopTime(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 
 	switch strings.TrimSpace(scanner.Text()) {
 	case "1":
-		timetable.RemoveTrip(duplicate.ID)
+		timetable.RemoveTrip(id)
 
-		_, err := timetable.EditTripStopTime(id, index-1, newTime)
+		fmt.Println("Atnaujintas reisas pašalintas. Senasis reisas paliktas.")
+
+	case "2":
+		// Jei metodas aptinka dublikatą, jis vėl atstato seną laiką.
+		// Todėl reikia pritaikyti pakeitimą be dublikato atstatymo.
+		_, err := timetable.EditTripStopTime(id, index-1, newTime, true)
 		if err != nil {
-			fmt.Println("Klaida išsaugant pakeitimą:", err)
+			fmt.Println("Klaida:", err)
 			return
 		}
 
-		fmt.Println("Reiso laikas pakeistas ir senas reisas pašalintas.")
-
-	case "2":
-		fmt.Println("Pakeitimas ignoruotas. Senas laikas išsaugotas.")
+		fmt.Println("Reiso laikas pakeistas, bet abu reisai palikti.")
 
 	default:
 		fmt.Println("Neteisingas pasirinkimas. Pakeitimas ignoruotas.")
 	}
-
-	fmt.Println("Reiso laikas pakeistas.")
 }
 
 func renameRouteStop(scanner *bufio.Scanner, timetable *schedule.Schedule) {
@@ -441,8 +441,9 @@ func importTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 				duplicate.RouteNumber,
 			)
 
-			fmt.Println("1. Ignoruoti naują reisą")
+			fmt.Println("1. Ignoruoti ir pridėti naują reisą")
 			fmt.Println("2. Pašalinti seną reisą ir įkelti naują")
+			fmt.Println("Įveskite bet ką ir reisas nebus pridėtas")
 			fmt.Print("Pasirinkimas: ")
 
 			if !scanner.Scan() {
@@ -451,6 +452,11 @@ func importTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 
 			switch strings.TrimSpace(scanner.Text()) {
 			case "1":
+				if err := timetable.AddTrip(newTrip); err != nil {
+					fmt.Println("Klaida pridedant reisą:", err)
+					continue
+				}
+				added++
 				ignored++
 				continue
 
@@ -463,7 +469,7 @@ func importTrips(scanner *bufio.Scanner, timetable *schedule.Schedule) {
 				replaced++
 
 			default:
-				fmt.Println("Neteisingas pasirinkimas. Reisas ignoruojamas.")
+				fmt.Println("Neteisingas pasirinkimas. Reisas nepridėtas.")
 				ignored++
 			}
 

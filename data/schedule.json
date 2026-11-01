@@ -843,6 +843,67 @@
           "time": "00:20"
         }
       ]
+    },
+    {
+      "id": "A-040-TestRenaming",
+      "route_number": "28",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis2",
+          "time": "23:50"
+        },
+        {
+          "name": "Ligonine",
+          "time": "00:03"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "00:20"
+        }
+      ]
+    },
+    {
+      "id": "A-040-TestEditingTime",
+      "route_number": "27",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "23:55"
+        },
+        {
+          "name": "Ligonine",
+          "time": "00:03"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "00:20"
+        }
+      ]
+    },
+    {
+      "id": "A-040-TestDeletion",
+      "route_number": "33",
+      "direction": "Stotis -\u003e Oro uostas",
+      "stops": [
+        {
+          "name": "Stotis",
+          "time": "23:55"
+        },
+        {
+          "name": "Stotis2",
+          "time": "23:57"
+        },
+        {
+          "name": "Ligonine",
+          "time": "00:03"
+        },
+        {
+          "name": "Oro uostas",
+          "time": "00:20"
+        }
+      ]
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "trips": [
     {
-      "id": "A-001",
-      "route_number": "99",
-      "direction": "Testinis marsrutas - dublikato tikrinimas",
+      "id": "A-040_WRONG",
+      "route_number": "27",
+      "direction": "Stotis -\u003e Oro uostas",
       "stops": [
         {
-          "name": "Testine stotis",
-          "time": "09:00"
+          "name": "Stotis",
+          "time": "23:50"
         },
         {
-          "name": "Testinis centras",
-          "time": "09:15"
+          "name": "Ligonine",
+          "time": "00:03"
         },
         {
-          "name": "Testinis universitetas",
-          "time": "09:30"
+          "name": "Oro uostas",
+          "time": "00:20"
         }
       ]
     },
