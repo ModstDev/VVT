@@ -22,7 +22,7 @@
     {
       "id": "A-extra-001",
       "route_number": "77",
-      "direction": "Stotis - Universitetas",
+      "direction": "Stotis -\u003e Universitetas",
       "stops": [
         {
           "name": "Stotis",
@@ -41,7 +41,7 @@
     {
       "id": "A-extra-002",
       "route_number": "88",
-      "direction": "Oro uostas - Senamiestis",
+      "direction": "Oro uostas -\u003e Senamiestis",
       "stops": [
         {
           "name": "Oro uostas",
