@@ -159,7 +159,25 @@ func (s *Schedule) RemoveRouteStop(
 			stop := stopElement.Value.(model.Stop)
 
 			if stop.Name == stopName {
+				firstStop := trip.Stops.Front()
+				lastStop := trip.Stops.Back()
+
+				wasFirst := stopElement == firstStop
+				wasLast := stopElement == lastStop
+
 				trip.Stops.Remove(stopElement)
+
+				if wasFirst || wasLast {
+					firstStop = trip.Stops.Front()
+					lastStop = trip.Stops.Back()
+
+					if firstStop != nil && lastStop != nil {
+						trip.Direction = firstStop.Value.(model.Stop).Name +
+							" -> " +
+							lastStop.Value.(model.Stop).Name
+					}
+				}
+
 				removed++
 				tripRemoved++
 			}
