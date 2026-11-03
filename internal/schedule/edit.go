@@ -87,6 +87,7 @@ func (s *Schedule) RenameRouteStop(
 
 			if stop.Name == oldName {
 				stop.Name = newName
+				trip.Direction = strings.ReplaceAll(trip.Direction, oldName, newName)
 				stopElement.Value = stop
 				updated++
 				tripUpdated = true
