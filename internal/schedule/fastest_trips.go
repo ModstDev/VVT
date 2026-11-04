@@ -107,6 +107,13 @@ func (s *Schedule) FindFastestTrips(
 			}
 		}
 	}
+	if len(results) == 0 {
+		return nil, fmt.Errorf(
+			"Nerasta tokių reisų iš %q į %q",
+			firstStop,
+			secondStop,
+		)
+	}
 
 	sort.Slice(results, func(i, j int) bool {
 		return results[i].ArrivalOffset < results[j].ArrivalOffset
