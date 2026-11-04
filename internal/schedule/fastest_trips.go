@@ -22,7 +22,7 @@ type DirectTrip struct {
 }
 
 func (s *Schedule) FindFastestTrips(
-	firstStop,
+	firstStop string,
 	secondStop string,
 	departure time.Time,
 	limit int,
@@ -50,85 +50,61 @@ func (s *Schedule) FindFastestTrips(
 	for tripElement := s.Trips.Front(); tripElement != nil; tripElement = tripElement.Next() {
 		trip := tripElement.Value.(*model.Trip)
 
-		stops := make([]model.Stop, 0, trip.Stops.Len())
+		for fromElement := trip.Stops.Front(); fromElement != nil; fromElement = fromElement.Next() {
+			from := fromElement.Value.(model.Stop)
 
-		for element := trip.Stops.Front(); element != nil; element = element.Next() {
-			stop := element.Value.(model.Stop)
-			stops = append(stops, stop)
-		}
-
-		if len(stops) < 2 {
-			continue
-		}
-
-		offsets := make([]int, len(stops))
-		previousMinute := -1
-		dayOffset := 0
-
-		for i, stop := range stops {
-			parsed, err := time.Parse("15:04", stop.Time)
-			if err != nil {
-				return nil, fmt.Errorf(
-					"invalid time %q in trip %q: %w",
-					stop.Time,
-					trip.ID,
-					err,
-				)
-			}
-
-			minute := parsed.Hour()*60 + parsed.Minute()
-
-			if i > 0 && minute < previousMinute {
-				dayOffset += minutesPerDay
-			}
-
-			offsets[i] = dayOffset + minute
-			previousMinute = minute
-		}
-
-		var best *DirectTrip
-
-		for i := 0; i < len(stops); i++ {
-			if !strings.EqualFold(stops[i].Name, firstStop) {
+			if !strings.EqualFold(from.Name, firstStop) {
 				continue
 			}
 
-			for j := i + 1; j < len(stops); j++ {
-				if !strings.EqualFold(stops[j].Name, secondStop) {
-					continue
-				}
-
-				departureClock := offsets[i] % minutesPerDay
-
-				wait := (departureClock - requestedMinute + minutesPerDay) % minutesPerDay
-
-				actualDeparture := requestedMinute + wait
-
-				duration := offsets[j] - offsets[i]
-
-				actualArrival := actualDeparture + duration
-
-				candidate := DirectTrip{
-					TripID:        trip.ID,
-					RouteNumber:   trip.RouteNumber,
-					Direction:     trip.Direction,
-					FromStop:      stops[i].Name,
-					ToStop:        stops[j].Name,
-					DepartureTime: formatMinutes(actualDeparture),
-					ArrivalTime:   formatMinutes(actualArrival),
-					Duration:      duration,
-					ArrivalOffset: actualArrival,
-				}
-
-				if best == nil || candidate.ArrivalOffset < best.ArrivalOffset {
-					copy := candidate
-					best = &copy
-				}
+			fromTime, err := time.Parse("15:04", from.Time)
+			if err != nil {
+				return nil, fmt.Errorf("invalid time %q in trip %q", from.Time, trip.ID)
 			}
-		}
 
-		if best != nil {
-			results = append(results, *best)
+			fromMinute := fromTime.Hour()*60 + fromTime.Minute()
+
+			wait := (fromMinute - requestedMinute + minutesPerDay) % minutesPerDay
+			actualDeparture := requestedMinute + wait
+
+			previousMinute := fromMinute
+			dayOffset := 0
+
+			for toElement := fromElement.Next(); toElement != nil; toElement = toElement.Next() {
+				to := toElement.Value.(model.Stop)
+
+				toTime, err := time.Parse("15:04", to.Time)
+				if err != nil {
+					return nil, fmt.Errorf("invalid time %q in trip %q", to.Time, trip.ID)
+				}
+
+				toMinute := toTime.Hour()*60 + toTime.Minute()
+
+				if toMinute < previousMinute {
+					dayOffset += minutesPerDay
+				}
+
+				if strings.EqualFold(to.Name, secondStop) {
+					duration := dayOffset + toMinute - fromMinute
+					actualArrival := actualDeparture + duration
+
+					candidate := DirectTrip{
+						TripID:        trip.ID,
+						RouteNumber:   trip.RouteNumber,
+						Direction:     trip.Direction,
+						FromStop:      from.Name,
+						ToStop:        to.Name,
+						DepartureTime: formatMinutes(actualDeparture),
+						ArrivalTime:   formatMinutes(actualArrival),
+						Duration:      duration,
+						ArrivalOffset: actualArrival,
+					}
+
+					results = append(results, candidate)
+				}
+
+				previousMinute = toMinute
+			}
 		}
 	}
 
